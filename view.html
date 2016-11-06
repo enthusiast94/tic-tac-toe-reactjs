@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="stlye.css">
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sprintf/1.0.3/sprintf.js"></script>
+    <script type="text/babel" src="react-stuff.js"></script>
+</head>
+<body>
+<div id="errors" style="
+  background: #c00;
+  color: #fff;
+  display: none;
+  margin: -20px -20px 20px;
+  padding: 20px;
+  white-space: pre-wrap;
+"></div>
+<div id="container"></div>
+<script>
+    window.addEventListener('mousedown', function(e) {
+        document.body.classList.add('mouse-navigation');
+        document.body.classList.remove('kbd-navigation');
+    });
+    window.addEventListener('keydown', function(e) {
+        if (e.keyCode === 9) {
+            document.body.classList.add('kbd-navigation');
+            document.body.classList.remove('mouse-navigation');
+        }
+    });
+    window.addEventListener('click', function(e) {
+        if (e.target.tagName === 'A' && e.target.getAttribute('href') === '#') {
+            e.preventDefault();
+        }
+    });
+    window.onerror = function(message, source, line, col, error) {
+        var text = error ? error.stack || error : message + ' (at ' + source + ':' + line + ':' + col + ')';
+        errors.textContent += text + '\n';
+        errors.style.display = '';
+    };
+    console.error = (function(old) {
+        return function error() {
+            errors.textContent += Array.prototype.slice.call(arguments).join(' ') + '\n';
+            errors.style.display = '';
+            old.apply(this, arguments);
+        }
+    })(console.error);
+</script>
+
+</body>
+</html>
