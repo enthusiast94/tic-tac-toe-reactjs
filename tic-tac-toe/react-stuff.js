@@ -98,7 +98,7 @@ class Game extends React.Component {
     jumpToMove(move) {
         this.setState({
             stepNumber: move,
-            xIsNext: move % 2 ? true: false
+            xIsNext: move % 2 ? false: true
         });
     }
 
