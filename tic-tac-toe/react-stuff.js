@@ -79,11 +79,19 @@ class Game extends React.Component {
         return this.state.history.map((step, move) => {
             const moveName = move == 0 ? "Game start" : sprintf("Move #%s", move);
 
-            return(
-                <li key={move}>
-                    <a href="#" onClick={() => this.jumpToMove(move)}>{moveName}</a>
-                </li>
-            )
+            if (move == this.state.stepNumber) {
+                return(
+                    <li className="selected-move" key={move}>
+                        <a href="#" onClick={() => this.jumpToMove(move)}>{moveName}</a>
+                    </li>
+                );
+            } else {
+                return(
+                    <li key={move}>
+                        <a href="#" onClick={() => this.jumpToMove(move)}>{moveName}</a>
+                    </li>
+                );
+            }
         });
     }
 
