@@ -1,2 +1,2 @@
 # tic-tac-toe-reactjs
-Tutorial: https://facebook.github.io/react/tutorial/tutorial.html
+Just did this tutorial: https://facebook.github.io/react/tutorial/tutorial.html (and the tasks associated with it) to get to know how React.js works. 
